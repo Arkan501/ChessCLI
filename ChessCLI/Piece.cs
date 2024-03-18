@@ -1,6 +1,7 @@
-// This creates all the pieces
+// This is where all the pieces are created
 namespace ChessCLI;
 
+// set to abstract so we never accidentally create a generic piece.
 public abstract class Piece {
     private PieceColour _colour;
     private string? _pieceName;
