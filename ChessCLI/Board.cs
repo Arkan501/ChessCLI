@@ -22,24 +22,20 @@ public class Board {
 
         // Filling out the 1st and 8th rank with the rest of the pieces.
                     /* White pieces */
-        _board[0, 0] = new Rook(PieceColour.White);
-        _board[0, 7] = new Rook(PieceColour.White);
-        _board[0, 1] = new Knight(PieceColour.White);
-        _board[0, 6] = new Knight(PieceColour.White);
-        _board[0, 2] = new Bishop(PieceColour.White);
-        _board[0, 5] = new Bishop(PieceColour.White);
-        _board[0, 3] = new Queen(PieceColour.White);
-        _board[0, 4] = new King(PieceColour.White);
+        RankInit(0, PieceColour.White, _board);
+        RankInit(7, PieceColour.Black, _board);
+    }
 
-                    /* Black pieces */
-        _board[7, 0] = new Rook(PieceColour.Black);
-        _board[7, 7] = new Rook(PieceColour.Black);
-        _board[7, 1] = new Knight(PieceColour.Black);
-        _board[7, 6] = new Knight(PieceColour.Black);
-        _board[7, 2] = new Bishop(PieceColour.Black);
-        _board[7, 5] = new Bishop(PieceColour.Black);
-        _board[7, 3] = new Queen(PieceColour.Black);
-        _board[7, 4] = new King(PieceColour.Black);
+    private void RankInit(int rank, PieceColour colour, Piece?[,] board) {
+        board[rank, 0] = new Rook(colour);
+        board[rank, 7] = new Rook(colour);
+        board[rank, 1] = new Knight(colour);
+        board[rank, 6] = new Knight(colour);
+        board[rank, 2] = new Bishop(colour);
+        board[rank, 5] = new Bishop(colour);
+        board[rank, 3] = new Queen(colour);
+        board[rank, 4] = new King(colour);
+        
     }
     
     //public Board(string fen) {
@@ -88,18 +84,19 @@ public class Board {
         _board[y, x] = null;
     }
 
+    private (int, int) ParseCoords(string square) {
+        int x = char.ToLower(square[0]) - 'a';
+        int y = square[1] - '1';
+        return (x, y);
+    }
+    
     // This method moves a piece from one position to another.
     public void MovePiece(string originSquare, string destinationSquare) {
-        // This is apparently how to do this.
-        int x1 = char.ToLower(originSquare[0]) - 'a';
-        int y1 = originSquare[1] - '1';
-
+        var (x1, y1) = ParseCoords(originSquare);
         // With the origin square parsed, we can now get the piece to move.
         Piece? pieceToMove = _board[y1, x1];
 
-        int x2 = char.ToLower(destinationSquare[0]) - 'a';
-        int y2 = destinationSquare[1] - '1';
-
+        var (x2, y2) = ParseCoords(destinationSquare);
         // Now we make use of the add and remove methods to move the piece.
         // The piece is first added to the destination square,
         // then removed from the origin square.
@@ -111,8 +108,7 @@ public class Board {
         if (checkSquare == null)
             return null;
         
-        int x = char.ToLower(checkSquare[0]) - 'a';
-        int y = checkSquare[1] - '1';
+        var (x, y) = ParseCoords(checkSquare);
 
         return _board[y, x];
     }

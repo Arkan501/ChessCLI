@@ -5,14 +5,12 @@ namespace ChessCLI;
 public abstract class Piece {
 
     protected string? PieceName { get; init; }
-
     public PieceColour Colour { get; protected init; }
-    
     public char? PieceSymbol { get; protected init; }
 
     // This is the string representation of the piece. Used for debugging.
     public override string ToString() {
-        return $"{Colour} {PieceName}";
+        return $"{Colour} {PieceName} {PieceSymbol}";
     }
 }
 
