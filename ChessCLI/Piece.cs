@@ -3,33 +3,18 @@ namespace ChessCLI;
 
 // set to abstract so we never accidentally create a generic piece.
 public abstract class Piece {
-    private PieceColour _colour;
-    private string? _pieceName;
-    private char? _symbol;
+    public PieceColour Colour { get; set; }
 
-    // This is the colour of the piece
-    public PieceColour Colour {
-        get => _colour;
-        set => _colour = value;
-    }
+    public string? PieceName { get; set; }
 
-    // This is the name of the piece
-    public string? PieceName {
-        get => _pieceName;
-        set => _pieceName = value;
-    }
-
-    // This is the symbol of the piece used in the terminal.
-    public char? Symbol {
-        get => _symbol;
-        set => _symbol = value;
-    }
+    public char? PieceSymbol { get; set; }
 
     // This is the string representation of the piece. Used for debugging.
     public string toString() {
-        return $"{_colour} {_pieceName}";
+        return $"{Colour} {PieceName}";
     }
 }
+
 // the following classes are the pieces
 class Pawn : Piece {
     public Pawn(PieceColour colour) {
@@ -37,10 +22,10 @@ class Pawn : Piece {
         base.PieceName = "Pawn";
 
         if (colour == PieceColour.White) {
-            base.Symbol = '♟';
+            base.PieceSymbol = '♟';
         }
         else {
-            base.Symbol = '♙';
+            base.PieceSymbol = '♙';
         }
     }
 }
@@ -51,10 +36,10 @@ class Knight : Piece {
         base.PieceName = "Knight";
 
         if (colour == PieceColour.White) {
-            base.Symbol = '♞';
+            base.PieceSymbol = '♞';
         }
         else {
-            base.Symbol = '♘';
+            base.PieceSymbol = '♘';
         }
     }
 }
@@ -65,10 +50,10 @@ class Bishop : Piece {
         base.PieceName = "Bishop";
 
         if (colour == PieceColour.White) {
-            base.Symbol = '♝';
+            base.PieceSymbol = '♝';
         }
         else {
-            base.Symbol = '♗';
+            base.PieceSymbol = '♗';
         }
     }
 }
@@ -79,10 +64,10 @@ class Rook : Piece {
         base.PieceName = "Rook";
 
         if (colour == PieceColour.White) {
-            base.Symbol = '♜';
+            base.PieceSymbol = '♜';
         }
         else {
-            base.Symbol = '♖';
+            base.PieceSymbol = '♖';
         }
     }
 }
@@ -93,10 +78,10 @@ class Queen : Piece {
         base.PieceName = "Queen";
 
         if (colour == PieceColour.White) {
-            base.Symbol = '♛';
+            base.PieceSymbol = '♛';
         }
         else {
-            base.Symbol = '♕';
+            base.PieceSymbol = '♕';
         }
     }
 }
@@ -107,10 +92,10 @@ class King : Piece {
         base.PieceName = "King";
 
         if (colour == PieceColour.White) {
-            base.Symbol = '♚';
+            base.PieceSymbol = '♚';
         }
         else {
-            base.Symbol = '♔';
+            base.PieceSymbol = '♔';
         }
     }
 }
