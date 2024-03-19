@@ -1,16 +1,16 @@
 // This is where all the pieces are created
 namespace ChessCLI;
 
-// set to abstract so we never accidentally create a generic piece.
+// set to abstract, so we never accidentally create a generic piece.
 public abstract class Piece {
-    public PieceColour Colour { get; set; }
+    protected PieceColour Colour { get; init; }
 
-    public string? PieceName { get; set; }
+    protected string? PieceName { get; init; }
 
-    public char? PieceSymbol { get; set; }
+    public char? PieceSymbol { get; protected init; }
 
     // This is the string representation of the piece. Used for debugging.
-    public string toString() {
+    public override string ToString() {
         return $"{Colour} {PieceName}";
     }
 }
@@ -18,84 +18,84 @@ public abstract class Piece {
 // the following classes are the pieces
 class Pawn : Piece {
     public Pawn(PieceColour colour) {
-        base.Colour = colour;
-        base.PieceName = "Pawn";
+        Colour = colour;
+        PieceName = "Pawn";
 
         if (colour == PieceColour.White) {
-            base.PieceSymbol = '♟';
+            PieceSymbol = '♟';
         }
         else {
-            base.PieceSymbol = '♙';
+            PieceSymbol = '♙';
         }
     }
 }
 
 class Knight : Piece {
     public Knight(PieceColour colour) {
-        base.Colour = colour;
-        base.PieceName = "Knight";
+        Colour = colour;
+        PieceName = "Knight";
 
         if (colour == PieceColour.White) {
-            base.PieceSymbol = '♞';
+            PieceSymbol = '♞';
         }
         else {
-            base.PieceSymbol = '♘';
+            PieceSymbol = '♘';
         }
     }
 }
 
 class Bishop : Piece {
     public Bishop(PieceColour colour) {
-        base.Colour = colour;
-        base.PieceName = "Bishop";
+        Colour = colour;
+        PieceName = "Bishop";
 
         if (colour == PieceColour.White) {
-            base.PieceSymbol = '♝';
+            PieceSymbol = '♝';
         }
         else {
-            base.PieceSymbol = '♗';
+            PieceSymbol = '♗';
         }
     }
 }
 
 class Rook : Piece {
     public Rook(PieceColour colour) {
-        base.Colour = colour;
-        base.PieceName = "Rook";
+        Colour = colour;
+        PieceName = "Rook";
 
         if (colour == PieceColour.White) {
-            base.PieceSymbol = '♜';
+            PieceSymbol = '♜';
         }
         else {
-            base.PieceSymbol = '♖';
+            PieceSymbol = '♖';
         }
     }
 }
 
 class Queen : Piece {
     public Queen(PieceColour colour) {
-        base.Colour = colour;
-        base.PieceName = "Queen";
+        Colour = colour;
+        PieceName = "Queen";
 
         if (colour == PieceColour.White) {
-            base.PieceSymbol = '♛';
+            PieceSymbol = '♛';
         }
         else {
-            base.PieceSymbol = '♕';
+            PieceSymbol = '♕';
         }
     }
 }
 
 class King : Piece {
     public King(PieceColour colour) {
-        base.Colour = colour;
-        base.PieceName = "King";
+        Colour = colour;
+        PieceName = "King";
 
         if (colour == PieceColour.White) {
-            base.PieceSymbol = '♚';
+            PieceSymbol = '♚';
         }
         else {
-            base.PieceSymbol = '♔';
+            PieceSymbol = '♔';
         }
     }
 }

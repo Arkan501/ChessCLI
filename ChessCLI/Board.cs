@@ -41,6 +41,12 @@ public class Board {
         _board[7, 3] = new Queen(PieceColour.Black);
         _board[7, 4] = new King(PieceColour.Black);
     }
+    
+    //public Board(string fen) {
+    //    _board = new Piece?[8, 8];
+    //    // parse the FEN string and initialize the board accordingly.
+    //    // I'll do this later.
+    // }
 
     // This method prints out the current board state.
     public void PrintBoard() {
@@ -66,17 +72,17 @@ public class Board {
     }
 
     /* The next two methods on their own won't directly be used in the CLI
-     * version. However, when I move on ta making a GUI version, it will be
+     * version. However, when I move on to making a GUI version, it will be
      * used, so it will be nice having these ahead of time.
      */
 
     // This method adds a piece at the specified position.
-    public void AddPiece(Piece? piece, int x, int y) {
+    private void AddPiece(Piece? piece, int x, int y) {
         _board[y, x] = piece;
     }
     
     // This method removes a piece at the specified position.
-    public void RemovePiece(int x, int y) {
+    private void RemovePiece(int x, int y) {
         _board[y, x] = null;
     }
 
