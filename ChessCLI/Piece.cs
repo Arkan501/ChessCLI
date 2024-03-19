@@ -3,10 +3,11 @@ namespace ChessCLI;
 
 // set to abstract, so we never accidentally create a generic piece.
 public abstract class Piece {
-    protected PieceColour Colour { get; init; }
 
     protected string? PieceName { get; init; }
 
+    public PieceColour Colour { get; protected init; }
+    
     public char? PieceSymbol { get; protected init; }
 
     // This is the string representation of the piece. Used for debugging.

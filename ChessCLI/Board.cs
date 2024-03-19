@@ -49,7 +49,7 @@ public class Board {
     // }
 
     // This method prints out the current board state.
-    public void PrintBoard() {
+    public void DrawBoard() {
         int termWidth = Console.WindowWidth;
         int boardWidth = _board.GetLength(1) * 2;
         int padding = (termWidth - boardWidth) / 2;
@@ -58,11 +58,13 @@ public class Board {
             Console.Write(new string(' ', padding));
             Console.Write($"{row + 1} ");
             for (int col = 0; col < 8; col++) {
-                if (_board[row, col] == null) {
-                    Console.Write("0 ");
-                }
-                else {
-                    Console.Write($"{_board[row, col]?.PieceSymbol} ");
+                switch (_board[row, col]) {
+                    case null:
+                        Console.Write("0 ");
+                        break;
+                    default:
+                        Console.Write($"{_board[row, col]?.PieceSymbol} ");
+                        break;
                 }
             }
             Console.WriteLine();
@@ -103,5 +105,15 @@ public class Board {
         // then removed from the origin square.
         AddPiece(pieceToMove, x2, y2);
         RemovePiece(x1, y1);
+    }
+
+    public Piece? GetPiece(string? checkSquare) {
+        if (checkSquare == null)
+            return null;
+        
+        int x = char.ToLower(checkSquare[0]) - 'a';
+        int y = checkSquare[1] - '1';
+
+        return _board[y, x];
     }
 }
