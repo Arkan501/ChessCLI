@@ -20,8 +20,8 @@ public class Program {
         do {
             Console.Clear();
             Console.WriteLine("\tChessCLI");
-            player = GetNextPlayer(player);
-            board.DrawBoard();
+            player = ChessUtils.GetNextPlayer(player);
+            ChessUtils.DrawBoard(board.BoardState);
             
             Console.WriteLine($"\t{player} to move");
                 
@@ -51,7 +51,7 @@ public class Program {
             }
 
             // create a temporary piece for checks
-            Piece? tempPiece = board.GetPiece(pieceToMove);
+            Piece? tempPiece = ChessUtils.GetPiece(board.BoardState, pieceToMove);
             // check if the piece exists
             if (tempPiece == null) {
                 Console.WriteLine("There is no piece at this square");
@@ -76,7 +76,7 @@ public class Program {
                 continue;
             }
             
-            Piece? tempPiece = board.GetPiece(moveToMake);
+            Piece? tempPiece = ChessUtils.GetPiece(board.BoardState, moveToMake);
             // check if new square contains a piece. Will mess with this later to
             // account for captures. For now, it won't be allowed
             if (tempPiece != null) {
@@ -88,17 +88,9 @@ public class Program {
         } while (!isSquareValid);
 
         if (pieceToMove != null && moveToMake != null)
-            board.MovePiece(pieceToMove, moveToMake);
+            ChessUtils.MovePiece(board.BoardState, pieceToMove, moveToMake);
 
         return board;
     }
 
-    private static PieceColour GetNextPlayer(PieceColour player) {
-        
-        return player switch {
-            PieceColour.White => PieceColour.Black,
-            PieceColour.Black => PieceColour.White,
-            _=> PieceColour.White
-        };
-    }
 }
